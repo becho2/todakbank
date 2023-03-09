@@ -4,8 +4,8 @@ import { User } from './user.entity';
 import { CreateUserDto } from './create-user.dto';
 import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
-@ApiTags('user')
 @Controller('user')
+@ApiTags('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -22,6 +22,6 @@ export class UserController {
   @ApiResponse({ status: 200, description: 'Create a user successfully'})
   createUser(@Body() createUserDto: CreateUserDto) {
     // createUserDto 객체는 유효성 검사를 통과한 객체입니다.
-    // ..
+    return this.userService.createUser(createUserDto);
   }
 }
