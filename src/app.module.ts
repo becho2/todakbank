@@ -8,7 +8,12 @@ import { UserService } from './user/user.service';
 import { BoardModule } from './board/board.module';
 
 @Module({
-  imports: [BoardModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }), 
+    BoardModule
+  ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],
 })
