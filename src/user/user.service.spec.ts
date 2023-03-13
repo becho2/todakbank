@@ -21,6 +21,7 @@ describe('UserService', () => {
   it('should be able to create', () => {
     const user = service.createUser({
       id: 'John',
+      password: 'v@ryd1ff1cu1t',
       name: 'Doe',
       phoneNumber: '01012345678',
       email: 'upchh@example.com',

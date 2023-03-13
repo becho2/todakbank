@@ -7,6 +7,10 @@ export class CreateUserDto {
   id: string;
 
   @IsString()
+  @ApiProperty({ description: 'The password', example: 'v@ryd1ff1cu1t' })
+  password: string;
+
+  @IsString()
   @ApiProperty({ description: 'The user name', example: 'John Doe' })
   name: string;
 
