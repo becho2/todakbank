@@ -32,7 +32,7 @@ export class UserService {
   }
 
   private async sendMemberJoinEmail(email: string, signupVerifyToken: string) {
-    await this.emailService.sendMemberJoinEmail(email, signupVerifyToken);
+    await this.emailService.sendMemberJoinVerification(email, signupVerifyToken);
   }
   
   private checkUserExists(email: string) {
