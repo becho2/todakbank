@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { User } from './user.entity';
-import { CreateUserDto } from './create-user.dto';
+import { User } from './entities/user.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+import { EmailVerificationDto } from './dto/email-verification.dto';
 
 @Injectable()
 export class UserService {
@@ -15,4 +16,9 @@ export class UserService {
   createUser(createUserDto: CreateUserDto): CreateUserDto{
     return createUserDto;
   }
+
+  sendEmailVerification(emailVerificationDto: EmailVerificationDto): boolean {
+    return true;
+  }
+  
 }

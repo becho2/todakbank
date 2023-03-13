@@ -1,14 +1,18 @@
-import { IsString, IsEmail, IsInt, Min, Max } from 'class-validator';
+import { IsString, IsEmail, IsInt, Min, Max, IsPhoneNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
   @IsString()
+  @ApiProperty({ description: 'The user id', example: 'johndoe123' })
+  id: string;
+
+  @IsString()
   @ApiProperty({ description: 'The user name', example: 'John Doe' })
   name: string;
 
-  @IsString()
-  @ApiProperty({ description: 'The user id', example: 'johndoe123' })
-  id: string;
+  @IsPhoneNumber('KR')
+  @ApiProperty({ description: 'The user phone number', example: '010-1234-5674' })
+  phoneNumber: string;
 
   @IsEmail()
   @ApiProperty({ description: 'The user email', example: 'john@example.com' })
