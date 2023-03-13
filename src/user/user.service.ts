@@ -2,9 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { EmailVerificationDto } from './dto/email-verification.dto';
+import * as uuid from 'uuid';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class UserService {
+  constructor(private emailService: EmailService) {}
+
   findAll(): User[] | PromiseLike<User[]> {
     // throw new Error('Method not implemented.');
     const UserOne = new User('hello', 'hello', 'hello@gmail.com');
@@ -13,12 +17,29 @@ export class UserService {
     return users;
   }
 
-  createUser(createUserDto: CreateUserDto): CreateUserDto{
+  async createUser(createUserDto: CreateUserDto) {
+    await this.checkUserExists(createUserDto.email);
+
+    const signupVerifyToken = uuid.v1();
+
+    await this.saveUser(createUserDto, signupVerifyToken);
+    await this.sendMemberJoinEmail(createUserDto.email, signupVerifyToken);
     return createUserDto;
   }
 
-  sendEmailVerification(emailVerificationDto: EmailVerificationDto): boolean {
+  sendVerificationEmail(emailVerificationDto: EmailVerificationDto): boolean {
     return true;
   }
+
+  private async sendMemberJoinEmail(email: string, signupVerifyToken: string) {
+    await this.emailService.sendMemberJoinEmail(email, signupVerifyToken);
+  }
   
+  private checkUserExists(email: string) {
+    return false; // @TODO DB연동 후 구현
+  }
+
+  private saveUser(user: User, signupVerifyToken: string) {
+    return; // @TODO: DB연동 후 구현
+  }
 }

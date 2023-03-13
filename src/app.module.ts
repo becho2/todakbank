@@ -6,6 +6,7 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 // import { knex } from 'knex';
 import { BoardModule } from './board/board.module';
+import { EmailService } from './email/email.service';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { BoardModule } from './board/board.module';
     BoardModule
   ],
   controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  providers: [AppService, UserService, EmailService],
 })
 export class AppModule {}

@@ -31,7 +31,7 @@ describe('UserService', () => {
   })
 
   it('should be able to send verification email', () => {
-    const result = service.sendEmailVerification({
+    const result = service.sendVerificationEmail({
       id: 'John',
       name: 'Doe',
       phoneNumber: '01012345678',

@@ -29,6 +29,6 @@ export class UserController {
   @Post('/email-verification')
   async sendEmailVerification(@Body() emailVerificationDto: EmailVerificationDto) {
     // emailVerificationDto 객체는 유효성 검사를 통과한 객체입니다
-    return this.userService.sendEmailVerification(emailVerificationDto);
+    return this.userService.sendVerificationEmail(emailVerificationDto);
   }
 }
