@@ -29,8 +29,8 @@ describe('AppController', () => {
       expect(appController.getEnv()).toBe('test');
     });
 
-    it('should return "3000"', () => {
-      expect(appController.getHello()).toBe('3000');
+    it('should return "Hello World!"', () => {
+      expect(appController.getHello()).toBe('Hello World!');
     });
   });
 });
