@@ -9,6 +9,8 @@ import { BoardModule } from './board/board.module';
 import { EmailService } from './email/email.service';
 import emailConfig from './config/emailConfig';
 import { validationSchema } from './config/validationSchema';
+import { EmailModule } from './email/email.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { validationSchema } from './config/validationSchema';
       isGlobal: true,
       validationSchema,
     }), 
-    BoardModule
+    BoardModule, EmailModule, UserModule
   ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService, EmailService],
