@@ -21,6 +21,6 @@ async function bootstrap() {
   // .setup('swagger ui endpoint', app, swagger_document)
   SwaggerModule.setup('api-docs', app, document);
 
-  await app.listen(port);
+  await app.listen(3000);
 }
 bootstrap();
