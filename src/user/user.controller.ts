@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -9,6 +9,13 @@ import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 @ApiTags('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get(':idx')
+  @ApiOperation({ summary: 'Get a user' })
+  @ApiResponse({ status: 200, description: 'Get a user successfully', type: User, isArray: false })
+  findOne(@Param('idx', ValidationPipe) idx: number) {
+    return this.userService.findOne(idx);
+  }
 
   @Get()
   @ApiOperation({ summary: 'Get all users' })

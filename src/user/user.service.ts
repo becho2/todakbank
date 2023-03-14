@@ -9,10 +9,15 @@ import { EmailService } from '../email/email.service';
 export class UserService {
   constructor(private emailService: EmailService) {}
 
+  findOne(idx: number): User {
+    const UserOne = new User(idx, 'hello', 'hello', 'hello@gmail.com');
+    return UserOne;
+  }
+
   findAll(): User[] | PromiseLike<User[]> {
     // throw new Error('Method not implemented.');
-    const UserOne = new User('hello', 'hello', 'hello@gmail.com');
-    const UserTwo = new User('bye', 'bye', 'bye@gmail.com');
+    const UserOne = new User(1, 'hello', 'hello', 'hello@gmail.com');
+    const UserTwo = new User(2, 'bye', 'bye', 'bye@gmail.com');
     const users = [UserOne, UserTwo];
     return users;
   }
