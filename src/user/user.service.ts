@@ -23,8 +23,8 @@ export class UserService {
     const signupVerifyToken = uuid.v1();
 
     await this.saveUser(createUserDto, signupVerifyToken);
-    await this.sendMemberJoinEmail(createUserDto.email, signupVerifyToken);
-    return createUserDto;
+    return await this.sendMemberJoinEmail(createUserDto.email, signupVerifyToken);
+    // return createUserDto;
   }
 
   sendVerificationEmail(emailVerificationDto: EmailVerificationDto): boolean {
@@ -32,7 +32,7 @@ export class UserService {
   }
 
   private async sendMemberJoinEmail(email: string, signupVerifyToken: string) {
-    await this.emailService.sendMemberJoinVerification(email, signupVerifyToken);
+    return await this.emailService.sendMemberJoinVerification(email, signupVerifyToken);
   }
   
   private checkUserExists(email: string) {
