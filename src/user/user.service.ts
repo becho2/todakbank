@@ -44,7 +44,7 @@ export class UserService {
     return false; // @TODO DB연동 후 구현
   }
 
-  private saveUser(user: User, signupVerifyToken: string) {
+  private saveUser(user: CreateUserDto, signupVerifyToken: string) {
     return; // @TODO: DB연동 후 구현
   }
 }

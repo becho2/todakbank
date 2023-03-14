@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Param, Query, ParseIntPipe, DefaultValuePipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -13,14 +13,18 @@ export class UserController {
   @Get(':idx')
   @ApiOperation({ summary: 'Get a user' })
   @ApiResponse({ status: 200, description: 'Get a user successfully', type: User, isArray: false })
-  findOne(@Param('idx', ValidationPipe) idx: number) {
+  findOne(@Param('idx', ParseIntPipe) idx: number) {
     return this.userService.findOne(idx);
   }
 
   @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Get all users successfully', type: User, isArray: true })
-  async findAll(): Promise<User[]> {
+  async findAll(
+    @Query('offset', new DefaultValuePipe(0), ParseIntPipe) offset: number,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+  ): Promise<User[]> {
+    console.log(offset, limit);
     return this.userService.findAll();
   }
 
