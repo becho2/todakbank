@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { EmailVerificationDto } from './dto/email-verification.dto';
 import * as uuid from 'uuid';
 import { EmailService } from '../email/email.service';
+import { DBService } from '../lib/db/db.service';
 
 @Injectable()
 export class UserService {

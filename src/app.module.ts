@@ -8,12 +8,13 @@ import emailConfig from './config/emailConfig';
 import { validationSchema } from './config/validationSchema';
 import { EmailModule } from './email/email.module';
 import { UserModule } from './user/user.module';
+import dbConfig from './config/dbConfig';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
-      load: [emailConfig],
+      load: [emailConfig, dbConfig],
       isGlobal: true,
       validationSchema,
     }), 
