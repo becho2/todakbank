@@ -29,7 +29,7 @@ export class UserController {
   }
 
   @Post()
-  @UsePipes(new ValidationPipe())
+  // @UsePipes(new ValidationPipe())
   @ApiOperation({ summary: 'Create a user' })
   @ApiResponse({ status: 200, description: 'Create a user successfully'})
   async createUser(@Body() createUserDto: CreateUserDto) {

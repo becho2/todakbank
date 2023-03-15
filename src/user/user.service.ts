@@ -23,6 +23,7 @@ export class UserService {
   }
 
   async createUser(createUserDto: CreateUserDto) {
+    return createUserDto;
     await this.checkUserExists(createUserDto.email);
 
     const signupVerifyToken = uuid.v1();
