@@ -1,13 +1,19 @@
 export class User {
   idx: number
-  name: string
   id: string
+  password: string
+  name: string
+  phoneNumber: string
   email: string
+  age: number
 
-  constructor(idx:number, name: string, id: string, email: string){
+  constructor(idx:number, id: string, password: string, name: string, phoneNumber: string, email: string, age: number){
     this.idx = idx;
-    this.name = name;
     this.id = id;
+    this.password = password;
+    this.name = name;
+    this.phoneNumber = phoneNumber;
     this.email = email;
+    this.age = age;
   }
 }

@@ -11,17 +11,18 @@ export class DBService {
   constructor(
     @Inject(dbConfig.KEY) private config: ConfigType<typeof dbConfig>,
   ) {
-    this.read = knex({
-      client: 'mysql',
-      connection: this.config.mysql.readPoolOptions,
-      pool: {
-        min: 0,
-        max: process.env.NODE_ENV !== 'production' ? 1 : 10,
-      },
-      debug: process.env.NODE_ENV == 'development',
-    });
+    this.read = knex(this.config.mysql.readPoolOptions);
+      // ({
+      // client: 'mysql2',
+      // connection: this.config.mysql.readPoolOptions,
+      // pool: {
+      //   min: 0,
+      //   max: process.env.NODE_ENV !== 'production' ? 1 : 10,
+      // },
+      // debug: process.env.NODE_ENV == 'development',
+    // });
     this.write = knex({
-      client: 'mysql',
+      client: 'mysql2',
       connection: this.config.mysql.writePoolOptions,
       pool: {
         min: 0,

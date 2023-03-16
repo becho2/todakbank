@@ -8,22 +8,50 @@ import { DBService } from '../lib/db/db.service';
 
 @Injectable()
 export class UserService {
-  constructor(private emailService: EmailService) {}
+  constructor(
+    private emailService: EmailService,
+    private readonly dbService: DBService
+  ) {}
 
   findOne(idx: number): User {
-    const UserOne = new User(idx, 'hello', 'hello', 'hello@gmail.com');
-    return UserOne;
+    throw new Error('Method not implemented.');
+    // return false;
   }
 
   findAll(): User[] | PromiseLike<User[]> {
-    // throw new Error('Method not implemented.');
-    const UserOne = new User(1, 'hello', 'hello', 'hello@gmail.com');
-    const UserTwo = new User(2, 'bye', 'bye', 'bye@gmail.com');
-    const users = [UserOne, UserTwo];
-    return users;
+    throw new Error('Method not implemented.');
+    // return [new User()];
   }
 
   async createUser(createUserDto: CreateUserDto) {
+    this.dbService.read.schema.hasTable('user')
+    .then((exists) => {
+      if (!exists) {
+        console.log('it does not exist');
+        this.dbService.write.schema.createTable('user', function(t) {
+          t.increments('idx').primary();
+          t.string('id', 100);
+          t.string('password', 100);
+          t.string('name', 100);
+          t.string('phoneNumber', 100);
+          t.string('email', 100);
+          t.tinyint('age');
+        }).then((result) => {
+          console.log(result);
+        });
+      }
+    });
+    // console.log(userTableExists);
+    // if (!userTableExists) {
+    //   this.dbService.write.schema.createTable('user', function(t) {
+    //     t.increments('idx').primary();
+    //     t.string('id', 100);
+    //     t.string('password', 100);
+    //     t.string('name', 100);
+    //     t.string('email', 100);
+    //     t.tinyint('age');
+    //   });
+    // }
     return createUserDto;
     await this.checkUserExists(createUserDto.email);
 

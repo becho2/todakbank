@@ -38,7 +38,7 @@ export class CreateUserDto {
   email: string;
 
   @IsInt()
-  @Min(18)
+  @Min(5)
   @Max(100)
   @ApiProperty({ description: 'The user age', example: 30 })
   age: number;
