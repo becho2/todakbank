@@ -15,7 +15,6 @@ export default registerAs('db', () => ({
                 queueLimit: 0,
                 dateStrings: true,
                 namedPlaceholders: true,
-                // synchronize: process.env.DATABASE_SYNCHRONIZE,
             },
             pool: {
               min: 0,
@@ -35,7 +34,6 @@ export default registerAs('db', () => ({
             queueLimit: 0,
             dateStrings: true,
             namedPlaceholders: true,
-            // synchronize: process.env.DATABASE_SYNCHRONIZE,
         },
     },
 }));
