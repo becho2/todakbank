@@ -37,3 +37,10 @@ lerna-debug.log*
 # Environment variables
 .env
 /src/config/env
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
